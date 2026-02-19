@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Charles Tucker (RealPhantomLee) — Cybersecurity portfolio focused on vulnerability management, SIEM, and repeatable lab builds." />
+  <title>Charles Tucker | Cybersecurity Portfolio</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Charles Tucker | Cybersecurity Portfolio" />
+  <meta property="og:description" content="Vulnerability Management • SIEM (Wazuh) • Repeatable Lab Builds • Documentation-first" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.085);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --muted2: rgba(255,255,255,0.55);
+      --border: rgba(255,255,255,0.10);
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --good: #34d399;
+      --warn: #fbbf24;
+      --bad: #fb7185;
+      --shadow: 0 14px 40px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(125,211,252,0.14), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(167,139,250,0.14), transparent 60%),
+        radial-gradient(900px 700px at 50% 90%, rgba(52,211,153,0.10), transparent 60%),
+        var(--bg);
+      line-height:1.5;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ text-decoration:underline; text-underline-offset: 4px; }
+
+    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 18px 54px; }
+
+    /* Nav */
+    .nav{
+      position: sticky; top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(11,15,23,0.65);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700; letter-spacing:0.2px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 3px rgba(125,211,252,0.12);
+    }
+    .nav-links{
+      display:flex; flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      font-size:14px;
+      color:var(--muted);
+    }
+    .pill{
+      padding:8px 10px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background: rgba(255,255,255,0.04);
+    }
+    .pill:hover{ background: rgba(255,255,255,0.07); text-decoration:none; }
+
+    /* Hero */
+    .hero{
+      margin-top:22px;
+      padding:26px;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(600px 260px at 20% 10%, rgba(125,211,252,0.18), transparent 60%),
+                  radial-gradient(600px 260px at 80% 20%, rgba(167,139,250,0.18), transparent 60%);
+      pointer-events:none;
+      opacity:0.6;
+    }
+    .hero > *{ position:relative; }
+
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      font-size:13px; color:var(--muted);
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:7px 10px;
+      background: rgba(255,255,255,0.04);
+    }
+    .kicker strong{ color:rgba(255,255,255,0.88); font-weight:600; }
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height:1.1;
+      letter-spacing:-0.6px;
+    }
+    .lead{
+      margin:0;
+      max-width: 72ch;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .cta-row{
+      margin-top:16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.085); text-decoration:none; }
+    .btn.primary{
+      border-color: rgba(125,211,252,0.38);
+      background: linear-gradient(135deg, rgba(125,211,252,0.16), rgba(167,139,250,0.12));
+    }
+    .meta-row{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .tag{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* Sections */
+    .section{ margin-top:26px; }
+    .section h2{
+      margin:0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.04);
+      padding:16px;
+    }
+    .card:hover{ background: rgba(255,255,255,0.055); }
+    .card h3{ margin:0 0 6px; font-size: 16px; }
+    .card p{ margin:0; color:var(--muted); font-size:14px; }
+
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    .col-8{ grid-column: span 8; }
+    .col-12{ grid-column: span 12; }
+
+    @media (max-width: 860px){
+      .col-6,.col-4,.col-8{ grid-column: span 12; }
+      .nav-links{ display:none; }
+    }
+
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .badge{
+      font-size:12px;
+      padding:5px 9px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255,255,255,0.03);
+      white-space: nowrap;
+    }
+    .badge.good{ border-color: rgba(52,211,153,0.35); color: rgba(167,243,208,0.95); }
+    .badge.warn{ border-color: rgba(251,191,36,0.35); color: rgba(253,230,138,0.95); }
+    .badge.private{ border-color: rgba(251,113,133,0.35); color: rgba(253,164,175,0.95); }
+    .mini{
+      margin-top:10px;
+      display:flex; flex-wrap:wrap; gap:8px;
+    }
+    .mini span{
+      font-size:12px;
+      color: var(--muted2);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding:6px 9px;
+      border-radius:999px;
+    }
+
+    .muted-note{
+      color: var(--muted2);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    footer{
+      margin-top:30px;
+      color: var(--muted2);
+      font-size: 13px;
+      text-align:center;
+    }
+    .hr{
+      height:1px; background: var(--border);
+      margin: 18px 0;
+    }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Charles Tucker <span style="color:var(--muted); font-weight:600;">/</span> <span class="mono" style="color:var(--muted);">@RealPhantomLee</span></span>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="pill" href="#projects">Projects</a>
+        <a class="pill" href="#skills">Skills</a>
+        <a class="pill" href="#github">GitHub</a>
+        <a class="pill" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="top">
+      <div class="kicker">
+        <strong>Cybersecurity</strong>
+        <span>•</span>
+        <span>Vulnerability Management</span>
+        <span>•</span>
+        <span>SIEM (Wazuh)</span>
+      </div>
+
+      <h1>Documentation-first security builds that translate into real-world risk reduction.</h1>
+      <p class="lead">
+        I design repeatable lab environments, validate findings, and document remediation workflows with proof artifacts
+        (logs, configs, screenshots) — aimed at remote roles in Vulnerability Management, SOC, and Security Operations.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn primary" href="#projects">View Featured Projects</a>
+        <a class="btn" href="https://www.linkedin.com/in/charles-tucker-843239355/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn" href="https://github.com/RealPhantomLee" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+
+      <div class="meta-row">
+        <span class="tag">Los Angeles, CA</span>
+        <span class="tag">Remote-ready</span>
+        <span class="tag">CompTIA Security+ (SY0-701)</span>
+        <span class="tag">Private repos available upon request</span>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <h2>Featured Work</h2>
+      <div class="grid">
+
+        <article class="card col-6">
+          <div class="row">
+            <div>
+              <h3>Brick Stack — Logging & SIEM Lab (Wazuh)</h3>
+              <p>Deployed Wazuh components, captured service status checks, and organized configs/logs/screenshots for repeatability.</p>
+            </div>
+            <span class="badge private">Private</span>
+          </div>
+          <div class="mini">
+            <span>Wazuh</span><span>Linux</span><span>Log sources</span><span>Alert workflow</span><span>Evidence artifacts</span>
+          </div>
+          <p class="muted-note">Add: architecture diagram + detections + sample alerts once sanitized for public release.</p>
+        </article>
+
+        <article class="card col-6">
+          <div class="row">
+            <div>
+              <h3>Brick Stack — Toolchain Layer</h3>
+              <p>Built a structured toolchain repo layout with scripts, labs, logs, and documentation patterns for portfolio-grade proof.</p>
+            </div>
+            <span class="badge private">Private</span>
+          </div>
+          <div class="mini">
+            <span>Bash</span><span>Git</span><span>Automation</span><span>Docs</span><span>Sanitization</span>
+          </div>
+          <p class="muted-note">Add: “how to reproduce” quickstart + screenshots of outcomes.</p>
+        </article>
+
+        <article class="card col-6">
+          <div class="row">
+            <div>
+              <h3>Brick Stack — Interface HUD & Operator Controls</h3>
+              <p>Created operator-friendly controls for interface selection, network mode changes, and logging/capture toggles.</p>
+            </div>
+            <span class="badge private">Private</span>
+          </div>
+          <div class="mini">
+            <span>Linux</span><span>CLI UX</span><span>Network modes</span><span>Status HUD</span>
+          </div>
+          <p class="muted-note">Add: short demo GIF + command examples.</p>
+        </article>
+
+        <article class="card col-6">
+          <div class="row">
+            <div>
+              <h3>Brick Stack — Secure Environments & Reproducible Builds</h3>
+              <p>Repeatable security lab builds with documentation, proof artifacts, and versioned changes for clarity and portability.</p>
+            </div>
+            <span class="badge private">Private</span>
+          </div>
+          <div class="mini">
+            <span>Hardening</span><span>Reproducibility</span><span>Evidence</span><span>Portfolio design</span>
+          </div>
+          <p class="muted-note">This is the “meta” project that ties the bricks together into a hiring-manager-friendly story.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <h2>Skills Snapshot</h2>
+      <div class="grid">
+        <div class="card col-4">
+          <h3>Core Focus</h3>
+          <p>Vulnerability scanning & validation • Risk-based prioritization • Remediation verification • Security documentation</p>
+        </div>
+        <div class="card col-4">
+          <h3>Security Tooling</h3>
+          <p>Wazuh • Wireshark • Burp Suite • Kali Linux • Git/GitHub • Virtualization</p>
+        </div>
+        <div class="card col-4">
+          <h3>Strength</h3>
+          <p>Turning “tech work” into proof: repeatable steps, artifacts, and clear write-ups that map to job responsibilities.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="github">
+      <h2>Public GitHub Repos (auto-loaded)</h2>
+      <div class="card">
+        <p id="ghStatus" class="muted-note" style="margin:0 0 10px;">
+          Loading public repos from <a href="https://github.com/RealPhantomLee" target="_blank" rel="noreferrer" class="mono">@RealPhantomLee</a>…
+        </p>
+        <div class="grid" id="repoGrid" aria-live="polite"></div>
+        <p class="muted-note" style="margin-bottom:0;">
+          If you’re seeing none: your profile currently shows <span class="mono">0 public repositories</span>. The moment you publish projects, they’ll appear here automatically. :contentReference[oaicite:1]{index=1}
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="card col-8">
+          <h3>Best way to reach me</h3>
+          <p>
+            LinkedIn: <a href="https://www.linkedin.com/in/charles-tucker-843239355/" target="_blank" rel="noreferrer">
+              linkedin.com/in/charles-tucker-843239355
+            </a>
+            <br/>
+            GitHub: <a href="https://github.com/RealPhantomLee" target="_blank" rel="noreferrer">github.com/RealPhantomLee</a>
+          </p>
+          <div class="hr"></div>
+          <p class="muted-note" style="margin:0;">
+            Want the “private repo” proof? Add a line like: <span class="mono">Private repos available upon request.</span>
+          </p>
+        </div>
+        <div class="card col-4">
+          <h3>Quick pitch</h3>
+          <p>
+            Building toward remote Vulnerability Management / SOC roles by shipping proof-driven projects:
+            deploy → validate → document → improve.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="hr"></div>
+      <div>© <span id="year"></span> Charles Tucker • Built with GitHub Pages</div>
+    </footer>
+  </main>
+
+  <script>
+    // ======= Settings =======
+    const GH_USER = "RealPhantomLee";
+    const MAX_REPOS = 9;
+
+    // ======= Helpers =======
+    const escapeHtml = (s) => (s ?? "").replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[m]));
+
+    const fmtDate = (iso) => {
+      try {
+        const d = new Date(iso);
+        return d.toLocaleDateString(undefined, { year:"numeric", month:"short", day:"2-digit" });
+      } catch { return ""; }
+    };
+
+    const makeRepoCard = (r) => {
+      const lang = r.language ? `<span>${escapeHtml(r.language)}</span>` : "";
+      const stars = `<span>★ ${r.stargazers_count}</span>`;
+      const fork = `<span>⑂ ${r.forks_count}</span>`;
+      const upd = r.pushed_at ? `<span>Updated ${escapeHtml(fmtDate(r.pushed_at))}</span>` : "";
+
+      return `
+        <article class="card col-4">
+          <div class="row">
+            <div>
+              <h3 style="margin-bottom:6px;">
+                <a href="${escapeHtml(r.html_url)}" target="_blank" rel="noreferrer">${escapeHtml(r.name)}</a>
+              </h3>
+              <p>${escapeHtml(r.description || "No description yet.")}</p>
+            </div>
+            <span class="badge good">Public</span>
+          </div>
+          <div class="mini">${lang}${stars}${fork}${upd}</div>
+        </article>
+      `;
+    };
+
+    async function loadRepos(){
+      const status = document.getElementById("ghStatus");
+      const grid = document.getElementById("repoGrid");
+
+      try{
+        const url = `https://api.github.com/users/${encodeURIComponent(GH_USER)}/repos?sort=pushed&per_page=${MAX_REPOS}`;
+        const res = await fetch(url, { headers: { "Accept":"application/vnd.github+json" } });
+
+        if(!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+
+        const repos = (await res.json())
+          .filter(r => !r.fork) // hide forks by default
+          .slice(0, MAX_REPOS);
+
+        if(repos.length === 0){
+          status.textContent = `No public repos found for @${GH_USER} (or they’re all forks).`;
+          grid.innerHTML = "";
+          return;
+        }
+
+        status.innerHTML = `Showing recent public repos for <a href="https://github.com/${GH_USER}" target="_blank" rel="noreferrer" class="mono">@${GH_USER}</a>.`;
+        grid.innerHTML = repos.map(makeRepoCard).join("");
+
+      } catch(err){
+        status.textContent = `Couldn’t load GitHub repos right now. (This can happen due to rate limits.)`;
+        grid.innerHTML = "";
+        console.warn(err);
+      }
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    loadRepos();
+  </script>
+</body>
+</html>
