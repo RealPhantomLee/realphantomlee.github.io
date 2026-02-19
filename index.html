@@ -15,7 +15,6 @@
     :root{
       --bg: #0b0f17;
       --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.085);
       --text: rgba(255,255,255,0.92);
       --muted: rgba(255,255,255,0.68);
       --muted2: rgba(255,255,255,0.55);
@@ -222,6 +221,7 @@
     .badge.good{ border-color: rgba(52,211,153,0.35); color: rgba(167,243,208,0.95); }
     .badge.warn{ border-color: rgba(251,191,36,0.35); color: rgba(253,230,138,0.95); }
     .badge.private{ border-color: rgba(251,113,133,0.35); color: rgba(253,164,175,0.95); }
+
     .mini{
       margin-top:10px;
       display:flex; flex-wrap:wrap; gap:8px;
@@ -252,6 +252,15 @@
       margin: 18px 0;
     }
     .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+    /* Resume iframe wrapper */
+    .iframe-wrap{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      overflow:hidden;
+      background: rgba(0,0,0,0.20);
+    }
+    iframe{ display:block; width:100%; border:0; }
   </style>
 </head>
 
@@ -266,6 +275,7 @@
         <a class="pill" href="#projects">Projects</a>
         <a class="pill" href="#skills">Skills</a>
         <a class="pill" href="#github">GitHub</a>
+        <a class="pill" href="#resume">Resume</a>
         <a class="pill" href="#contact">Contact</a>
       </nav>
     </div>
@@ -289,6 +299,7 @@
 
       <div class="cta-row">
         <a class="btn primary" href="#projects">View Featured Projects</a>
+        <a class="btn" href="./resume.pdf" target="_blank" rel="noreferrer">Download Resume (PDF)</a>
         <a class="btn" href="https://www.linkedin.com/in/charles-tucker-843239355/" target="_blank" rel="noreferrer">LinkedIn</a>
         <a class="btn" href="https://github.com/RealPhantomLee" target="_blank" rel="noreferrer">GitHub</a>
       </div>
@@ -296,7 +307,7 @@
       <div class="meta-row">
         <span class="tag">Los Angeles, CA</span>
         <span class="tag">Remote-ready</span>
-        <span class="tag">CompTIA Security+ (SY0-701)</span>
+        <span class="tag">CompTIA Security+</span>
         <span class="tag">Private repos available upon request</span>
       </div>
     </section>
@@ -316,35 +327,35 @@
           <div class="mini">
             <span>Wazuh</span><span>Linux</span><span>Log sources</span><span>Alert workflow</span><span>Evidence artifacts</span>
           </div>
-          <p class="muted-note">Add: architecture diagram + detections + sample alerts once sanitized for public release.</p>
+          <p class="muted-note">Tip: when you sanitize it, publish a “lite” version with screenshots and redacted configs.</p>
         </article>
 
         <article class="card col-6">
           <div class="row">
             <div>
               <h3>Brick Stack — Toolchain Layer</h3>
-              <p>Built a structured toolchain repo layout with scripts, labs, logs, and documentation patterns for portfolio-grade proof.</p>
+              <p>Structured scripts, labs, and documentation patterns to keep builds reproducible and portfolio-ready.</p>
             </div>
             <span class="badge private">Private</span>
           </div>
           <div class="mini">
             <span>Bash</span><span>Git</span><span>Automation</span><span>Docs</span><span>Sanitization</span>
           </div>
-          <p class="muted-note">Add: “how to reproduce” quickstart + screenshots of outcomes.</p>
+          <p class="muted-note">Add later: quickstart + “proof artifacts” checklist page.</p>
         </article>
 
         <article class="card col-6">
           <div class="row">
             <div>
               <h3>Brick Stack — Interface HUD & Operator Controls</h3>
-              <p>Created operator-friendly controls for interface selection, network mode changes, and logging/capture toggles.</p>
+              <p>Operator-friendly controls for interface selection, network mode changes, and logging/capture toggles.</p>
             </div>
             <span class="badge private">Private</span>
           </div>
           <div class="mini">
             <span>Linux</span><span>CLI UX</span><span>Network modes</span><span>Status HUD</span>
           </div>
-          <p class="muted-note">Add: short demo GIF + command examples.</p>
+          <p class="muted-note">Add later: short demo GIF and example commands.</p>
         </article>
 
         <article class="card col-6">
@@ -358,7 +369,7 @@
           <div class="mini">
             <span>Hardening</span><span>Reproducibility</span><span>Evidence</span><span>Portfolio design</span>
           </div>
-          <p class="muted-note">This is the “meta” project that ties the bricks together into a hiring-manager-friendly story.</p>
+          <p class="muted-note">This is your “story” project that ties the bricks together for hiring managers.</p>
         </article>
 
       </div>
@@ -390,7 +401,27 @@
         </p>
         <div class="grid" id="repoGrid" aria-live="polite"></div>
         <p class="muted-note" style="margin-bottom:0;">
-          If you’re seeing none: your profile currently shows <span class="mono">0 public repositories</span>. The moment you publish projects, they’ll appear here automatically. :contentReference[oaicite:1]{index=1}
+          If you see none, it means you don’t have public repos yet (or they’re all forks). When you publish, this section will populate automatically.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="resume">
+      <h2>Resume</h2>
+      <div class="card">
+        <p class="muted-note" style="margin:0 0 10px;">
+          <a href="./resume.pdf" target="_blank" rel="noreferrer">Open resume in a new tab</a>
+        </p>
+        <div class="iframe-wrap">
+          <iframe
+            src="./resume.pdf"
+            title="Resume PDF"
+            style="height: 820px;"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <p class="muted-note" style="margin-bottom:0;">
+          If the embed doesn’t show on some browsers, the download button in the header still works.
         </p>
       </div>
     </section>
@@ -409,7 +440,7 @@
           </p>
           <div class="hr"></div>
           <p class="muted-note" style="margin:0;">
-            Want the “private repo” proof? Add a line like: <span class="mono">Private repos available upon request.</span>
+            For hiring managers: <span class="mono">Private repos available upon request.</span>
           </p>
         </div>
         <div class="card col-4">
@@ -491,7 +522,7 @@
         grid.innerHTML = repos.map(makeRepoCard).join("");
 
       } catch(err){
-        status.textContent = `Couldn’t load GitHub repos right now. (This can happen due to rate limits.)`;
+        status.textContent = `Couldn’t load GitHub repos right now. (Sometimes rate limits happen.)`;
         grid.innerHTML = "";
         console.warn(err);
       }
@@ -502,3 +533,4 @@
   </script>
 </body>
 </html>
+
